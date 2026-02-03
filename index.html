@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Very Serious Question</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin-top: 80px;
+    }
+    button {
+      font-size: 20px;
+      padding: 12px 24px;
+      margin: 15px;
+      cursor: pointer;
+    }
+    #no {
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌹 A Very Serious Question 🌹</h1>
+  <p>Will you be my Valentine?</p>
+
+  <button onclick="yes()">💖 Yes 💖</button>
+  <button id="no">❌ No</button>
+
+  <script>
+    const noBtn = document.getElementById("no");
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+
+    function yes() {
+      window.location.href =
+        "https://www.google.com/search?q=Yes+I+will+be+your+Valentine+%F0%9F%92%96";
+    }
+  </script>
+
+</body>
+</html>
