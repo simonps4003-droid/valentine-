@@ -38,10 +38,17 @@
       position: relative;
     }
 
+    /* Conteneur pour les boutons */
+    .buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+
     button {
       font-size: 20px;
       padding: 14px 28px;
-      margin: 15px;
       cursor: pointer;
 
       border: none;
@@ -54,16 +61,15 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-
-      position: absolute;
     }
 
     button:hover {
       transform: scale(1.08);
     }
 
-    #yes {
-      position: relative;
+    /* Seul le bouton NO reste absolu */
+    #no {
+      position: absolute;
     }
   </style>
 </head>
@@ -73,8 +79,10 @@
   <h1>A Very Serious Question</h1>
   <p id="question">Will you be my Valentine 🌸?</p>
 
-  <button id="yes" onclick="yes()">Yes 🫶🏼</button>
-  <button id="no">❌ No</button>
+  <div class="buttons">
+    <button id="yes" onclick="yes()">Yes 🫶🏼</button>
+    <button id="no">❌ No</button>
+  </div>
 
   <script>
     const noBtn = document.getElementById("no");
@@ -101,7 +109,7 @@
         x < qRect.right &&
         y + btnHeight > qRect.top &&
         y < qRect.bottom &&
-        tries < 100 // limite pour éviter boucle infinie
+        tries < 100
       );
 
       return { x, y };
@@ -123,6 +131,7 @@
 
 </body>
 </html>
+
 
 
 
