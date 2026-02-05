@@ -22,6 +22,8 @@
       text-align: center;
 
       background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      overflow: hidden;
+      position: relative;
     }
 
     h1 {
@@ -33,12 +35,7 @@
       font-size: 22px;
       font-weight: 300;
       margin-bottom: 40px;
-    }
-
-    .buttons {
       position: relative;
-      width: 400px; /* largeur de la zone où le bouton peut bouger */
-      height: 200px; /* hauteur de la zone */
     }
 
     button {
@@ -57,14 +54,16 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+
+      position: absolute;
     }
 
     button:hover {
       transform: scale(1.08);
     }
 
-    #no {
-      position: absolute;
+    #yes {
+      position: relative;
     }
   </style>
 </head>
@@ -72,24 +71,44 @@
 <body>
 
   <h1>A Very Serious Question</h1>
-  <p>Will you be my Valentine 🌸?</p>
+  <p id="question">Will you be my Valentine 🌸?</p>
 
-  <div class="buttons">
-    <button onclick="yes()">Yes 🫶🏼</button>
-    <button id="no">❌ No</button>
-  </div>
+  <button id="yes" onclick="yes()">Yes 🫶🏼</button>
+  <button id="no">❌ No</button>
 
   <script>
     const noBtn = document.getElementById("no");
-    const container = document.querySelector(".buttons");
+    const question = document.getElementById("question");
+
+    function getSafePosition() {
+      const btnWidth = noBtn.offsetWidth;
+      const btnHeight = noBtn.offsetHeight;
+
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+
+      // Zone de la question
+      const qRect = question.getBoundingClientRect();
+
+      let x, y, tries = 0;
+      do {
+        x = Math.random() * (screenWidth - btnWidth);
+        y = Math.random() * (screenHeight - btnHeight);
+        tries++;
+        // éviter chevauchement avec la zone du texte
+      } while (
+        x + btnWidth > qRect.left &&
+        x < qRect.right &&
+        y + btnHeight > qRect.top &&
+        y < qRect.bottom &&
+        tries < 100 // limite pour éviter boucle infinie
+      );
+
+      return { x, y };
+    }
 
     noBtn.addEventListener("mouseover", () => {
-      const maxX = container.clientWidth - noBtn.offsetWidth;
-      const maxY = container.clientHeight - noBtn.offsetHeight;
-
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
-
+      const { x, y } = getSafePosition();
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
     });
@@ -104,6 +123,7 @@
 
 </body>
 </html>
+
 
 
 
