@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>A Very Serious Question </title>
+  <title>A Very Serious Question</title>
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +35,12 @@
       margin-bottom: 40px;
     }
 
+    .buttons {
+      position: relative;
+      width: 400px; /* largeur de la zone où le bouton peut bouger */
+      height: 200px; /* hauteur de la zone */
+    }
+
     button {
       font-size: 20px;
       padding: 14px 28px;
@@ -47,6 +53,10 @@
 
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
       transition: transform 0.2s ease;
+
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     button:hover {
@@ -61,18 +71,25 @@
 
 <body>
 
-  <h1>A Very Serious Question </h1>
+  <h1>A Very Serious Question</h1>
   <p>Will you be my Valentine 🌸?</p>
 
-  <button onclick="yes()">Yes 🫶🏼</button>
-  <button id="no">❌ No</button>
+  <div class="buttons">
+    <button onclick="yes()">Yes 🫶🏼</button>
+    <button id="no">❌ No</button>
+  </div>
 
   <script>
     const noBtn = document.getElementById("no");
+    const container = document.querySelector(".buttons");
 
     noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      const maxX = container.clientWidth - noBtn.offsetWidth;
+      const maxY = container.clientHeight - noBtn.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
     });
@@ -87,5 +104,6 @@
 
 </body>
 </html>
+
 
 
