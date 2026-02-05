@@ -2,30 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Very Serious Question</title>
+  <title>A Very Serious Question </title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
   <style>
     body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      font-family: 'Poppins', sans-serif;
       text-align: center;
-      font-family: Arial, sans-serif;
-      margin-top: 80px;
+
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
     }
+
+    h1 {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 22px;
+      font-weight: 300;
+      margin-bottom: 40px;
+    }
+
     button {
       font-size: 20px;
-      padding: 12px 24px;
+      padding: 14px 28px;
       margin: 15px;
       cursor: pointer;
+
+      border: none;
+      border-radius: 30px;
+      background-color: white;
+
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease;
     }
+
+    button:hover {
+      transform: scale(1.08);
+    }
+
     #no {
       position: absolute;
     }
   </style>
 </head>
+
 <body>
 
-  <h1> A Very Serious Question </h1>
+  <h1>A Very Serious Question </h1>
   <p>Will you be my Valentine 🌸?</p>
 
-  <button onclick="yes()"> Yes 🫶🏼 </button>
+  <button onclick="yes()">Yes 🫶🏼</button>
   <button id="no">❌ No</button>
 
   <script>
@@ -39,11 +78,14 @@
     });
 
     function yes() {
-      // Ouvre l'image dans un nouvel onglet
-      window.open("Copie de Pink Gradient Motivational Desktop Wallpaper.png", "_blank");
+      window.open(
+        "Copie de Pink Gradient Motivational Desktop Wallpaper.png",
+        "_blank"
+      );
     }
   </script>
 
 </body>
 </html>
+
 
