@@ -35,18 +35,10 @@
       font-size: 22px;
       font-weight: 300;
       margin-bottom: 40px;
-      position: relative;
     }
 
-    /* Conteneur pour les boutons */
-    .buttons {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      align-items: center;
-    }
-
-    button {
+    /* Bouton Yes */
+    #yes {
       font-size: 20px;
       padding: 14px 28px;
       cursor: pointer;
@@ -61,15 +53,30 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      margin-bottom: 40px;
     }
 
-    button:hover {
+    #yes:hover {
       transform: scale(1.08);
     }
 
-    /* Seul le bouton NO reste absolu */
+    /* Bouton No */
     #no {
       position: absolute;
+      font-size: 20px;
+      padding: 14px 28px;
+      cursor: pointer;
+
+      border: none;
+      border-radius: 30px;
+      background-color: white;
+
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease;
+    }
+
+    #no:hover {
+      transform: scale(1.08);
     }
   </style>
 </head>
@@ -79,10 +86,11 @@
   <h1>A Very Serious Question</h1>
   <p id="question">Will you be my Valentine 🌸?</p>
 
-  <div class="buttons">
-    <button id="yes" onclick="yes()">Yes 🫶🏼</button>
-    <button id="no">❌ No</button>
-  </div>
+  <!-- Le bouton Yes reste centré sous la question -->
+  <button id="yes" onclick="yes()">Yes 🫶🏼</button>
+
+  <!-- Le bouton No vole librement -->
+  <button id="no">❌ No</button>
 
   <script>
     const noBtn = document.getElementById("no");
@@ -95,7 +103,6 @@
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
 
-      // Zone de la question
       const qRect = question.getBoundingClientRect();
 
       let x, y, tries = 0;
@@ -103,7 +110,6 @@
         x = Math.random() * (screenWidth - btnWidth);
         y = Math.random() * (screenHeight - btnHeight);
         tries++;
-        // éviter chevauchement avec la zone du texte
       } while (
         x + btnWidth > qRect.left &&
         x < qRect.right &&
@@ -131,6 +137,7 @@
 
 </body>
 </html>
+
 
 
 
